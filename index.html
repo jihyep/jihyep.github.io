@@ -13,8 +13,8 @@
     </title>
     <!-- 브라우저 탭 아이콘입니다. 파일을 바꾼 뒤 v 값을 올리면 오래된 캐시를 피할 수 있습니다. -->
     <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
-    <link rel="stylesheet" href="styles.css?v=10">
-    <script src="script.js?v=10" defer>
+    <link rel="stylesheet" href="styles.css?v=13">
+    <script src="script.js?v=12" defer>
     </script>
   </head>
   <body>
@@ -23,9 +23,7 @@
     </a>
     <!-- 세부 페이지 전용 상단바: 홈에서는 script.js가 숨깁니다. -->
     <header class="header" hidden>
-      <a class="home-link name-mark" href="#home" aria-label="Jihye Park home">
-        Jihye Park
-      </a>
+      <a class="home-link name-mark" href="#home" aria-label="Jihye Park home"><img class="home-mark" src="favicon.svg?v=2" width="32" height="32" alt=""></a>
       <div class="menu-wrap">
         <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-menu">
           <span>
@@ -109,6 +107,19 @@
             <h2 id="awards-title">
               Awards
             </h2>
+
+            <article class="timeline-entry">
+              <p class="entry-date">Oct 2026</p>
+              <div>
+                <h3 class="lab-heading">The 5th MEIT of Sookmyung
+                  <a class="lab-link award-more-link" href="awards/meit/" aria-label="More about the MEIT award project"><span class="more-label">more</span><svg class="link-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                      <path d="M6 18 18 6M6 6h12v12" />
+                    </svg></a>
+                </h3>
+                <p class="award-institution">Sookmyung Women's University</p>
+                <p class="award-detail">Silver Award · $900 Prize · Team Project</p>
+              </div>
+            </article>
             <article class="timeline-entry">
               <p class="entry-date">
                 Aug 2025
@@ -124,7 +135,7 @@
                   Award from the University President
                 </p>
                 <p class="award-detail">
-                  $300 scholarship
+                  $300 Scholarship
                 </p>
               </div>
             </article>
@@ -190,12 +201,8 @@
             </p>
           </section>
           <section class="record" aria-labelledby="projects-title">
-            <h2 id="projects-title">
-              Projects
-            </h2>
-            <p class="empty-value" aria-label="No information added">
-              -
-            </p>
+            <h2 id="projects-title">Projects</h2>
+            <p class="empty-value" aria-label="No information added">-</p>
           </section>
           <!-- 참고 사이트의 다른 사람 이력을 복사하지 않고, 확인된 본인 정보만 작성하세요. -->
         </div>

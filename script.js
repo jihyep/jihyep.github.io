@@ -69,6 +69,8 @@ menu.addEventListener('click', event => {
 });
 
 function showPage(moveFocus = false) {
+  // Standalone case studies keep native in-page anchors and static metadata.
+  if (!pages.length) return;
   let requested = window.location.hash.slice(1);
   // 이전 주소를 저장해 둔 방문자를 위해 통합 전 링크를 유지합니다.
   const aliases = { projects: 'research', education: 'about' };

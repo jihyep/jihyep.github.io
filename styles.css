@@ -124,3 +124,11 @@ footer { padding: 22px var(--edge) 28px; text-align: right; font-size: 12px; col
 }
 /* 기기에서 동작 줄이기를 설정한 방문자에게는 애니메이션을 끕니다. */
 @media (prefers-reduced-motion: reduce) { *, *:before, *:after { animation: none !important; transition: none !important; } }
+
+/* Award metadata reuses the portfolio's monochrome typography. */
+.award-badge { display: inline-block; border: 1px solid #d9d9d9; border-radius: 3px; padding: 4px 8px; font-size: 12px; line-height: 1.4; color: #555; }
+
+.header .home-link { display: inline-flex; align-items: center; justify-content: center; min-width: 40px; min-height: 40px; }
+.header .home-mark { display: block; width: 32px; height: 32px; }
+.lab-link.award-more-link { width: auto; gap: 5px; margin-left: 2px; padding: 4px 0; }
+.more-label { font-size: 10px; line-height: 1; letter-spacing: .02em; color: inherit; }

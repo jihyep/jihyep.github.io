@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#ffffff"><meta name="robots" content="noindex,nofollow"><title>MEIT — Award Project · Jihye Park</title><meta name="description" content="A directional hazard-sound wearable prototype combining iOS audio capture and embedded haptics. Silver Award at The 5th MEIT of Sookmyung."><link rel="canonical" href="https://jihyep.github.io/awards/meit/"><meta property="og:type" content="article"><meta property="og:title" content="MEIT — Award Project · Jihye Park"><meta property="og:description" content="From stereo audio to directional haptics: implementation, debugging and a Silver Award."><meta property="og:url" content="https://jihyep.github.io/awards/meit/"><meta property="og:image" content="https://jihyep.github.io/assets/meit/final-hardware.jpg"><meta property="og:image:alt" content="Wearable belt prototype"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="../../favicon.svg?v=2" type="image/svg+xml"><link rel="stylesheet" href="../../styles.css?v=13"><link rel="stylesheet" href="meit.css?v=4"><script src="../../script.js?v=12" defer></script><script src="meit.js?v=3" defer></script></head><body><a class="skip-link" href="#main">Skip to content</a>    <header class="header">
+      <a class="home-link name-mark" href="../../#home" aria-label="Jihye Park home"><img class="home-mark" src="../../favicon.svg?v=2" width="32" height="32" alt=""></a>
+      <div class="menu-wrap">
+        <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-menu">
+          <span>
+          </span>
+          <span>
+          </span>
+          <span>
+          </span>
+        </button>
+        <!-- 새 메뉴를 추가하면 홈의 home-nav에도 같은 링크를 넣으세요. -->
+        <div class="dropdown" id="site-menu" aria-hidden="true" inert>
+          <div class="dropdown-inner">
+            <nav class="dropdown-nav" aria-label="Page navigation">
+              <a href="../../#about" data-page="about">
+                About
+              </a>
+              <a href="../../#research" data-page="research">
+                Research
+              </a>
+              <a href="../../#links" data-page="links">
+                Links
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+<main id="main" class="case-study" tabindex="-1"><div class="case-intro" id="case-title"><a class="back-link" href="../../#about">← About</a><p class="eyebrow">The 5th MEIT of Sookmyung · 2026</p>
+<p class="case-subtitle">AI-based Directional Hazard Sound<br class="desktop-break"> Haptic Alert System</p>
+<div class="hero-award"><span class="award-badge">Silver Award</span><span>$900 Prize</span></div><p class="case-lede">Making a warning tangible: what happened, which side it came from, and how to communicate both through a wearable.</p>
+<dl class="case-metadata"><div><dt>Project</dt><dd>Team 팔방송이</dd></div><div><dt>Development</dt><dd>Sep–Oct 2026</dd></div><div><dt>My role</dt><dd>Embedded / Electronics / iOS</dd></div><div><dt>Stack</dt><dd>ESP-IDF · Swift · Python · BLE</dd></div></dl>
+</div><div class="hero-carousel media-carousel" role="region" aria-roledescription="carousel" aria-label="Wearable system images">
+<div class="carousel-track" tabindex="0" aria-label="System images; use arrow buttons or swipe"><div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 3"><figure class="case-figure"><img src="../../assets/meit/product-composition.png" width="1536" height="1024" alt="Studio visualization of the iOS app and wearable belt prototype" decoding="async"></figure></div>
+<div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 3"><figure class="case-figure"><img src="../../assets/meit/final-hardware.jpg" width="1600" height="1200" alt="Wearable belt prototype with ESP32-S3 and motor drivers" loading="lazy" decoding="async"></figure></div>
+<div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 3"><figure class="case-figure"><img src="../../assets/meit/final-system.jpg" width="984" height="1158" alt="Complete prototype with laptop result UI, wearable belt electronics and iPhone app" loading="lazy" decoding="async"></figure></div>
+</div>
+<div class="carousel-controls"><button class="carousel-prev" type="button" aria-label="Previous system image"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button><span class="carousel-position" aria-live="polite">1 / 3</span><button class="carousel-next" type="button" aria-label="Next system image"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button></div></div>
+<nav class="case-toc" aria-label="Case study contents"><a href="#overview">Overview</a><a href="#architecture">Architecture</a><a href="#contribution">My contribution</a><a href="#ios">iOS</a><a href="#deep-dive">TDoA research</a><a href="#recognition">Recognition</a></nav>
+<section class="case-section" id="overview" aria-labelledby="overview-title"><div class="section-label"><p class="eyebrow">01 / Overview</p>
+<h2 id="overview-title">Why this system?</h2></div><div class="section-content"><p>When hearing is limited, nearby hazards can be easy to miss. This can affect people with hearing loss, noise-cancelling earphone users, and workers in noisy industrial environments.</p>
+<div class="overview-questions"><p><strong>WHAT</strong>What is the hazard sound?</p>
+<p><strong>WHERE</strong>Which direction is it coming from?</p>
+<p><strong>HOW</strong>How can the warning be felt intuitively?</p>
+</div>
+<p>Screen-based warnings can require the user to look at a display and make direction difficult to convey at a glance. We built a wearable belt prototype that communicates sound type and direction through haptic feedback.</p>
+</div></section>
+
+<section class="case-section" id="architecture" aria-labelledby="architecture-title"><div class="section-label"><p class="eyebrow">02 / System architecture</p>
+<h2 id="architecture-title">From sound to touch</h2></div><div class="section-content"><p class="source-note">System / Team Implementation</p>
+<ol class="flow"><li><span>01 / iPhone</span><strong>Capture + spatial cue</strong><p>Stereo PCM · channel RMS · LEFT / CENTER / RIGHT</p>
+</li><li><span>02 / Wi-Fi · HTTP</span><strong>Audio + Event metadata</strong><p>16 kHz mono PCM16LE · latest 2.5 seconds</p>
+</li><li><span>03 / Windows laptop</span><strong>Classify + Decide</strong><p>iOS bridge → AI model → motor bridge</p>
+</li><li><span>04 / BLE</span><strong>Deliver a haptic command</strong><p>Direction · intensity · timed ON/OFF steps</p>
+</li><li><span>05 / ESP32-S3</span><strong>Validate + Execute</strong><p>Command parsing → FreeRTOS sequencer</p>
+</li><li><span>06 / Wearable</span><strong>Feel position + Rhythm</strong><p>DRV8833 ×2 → left/right ERM motors</p>
+</li></ol>
+</div></section>
+
+<section class="case-section" id="hardware" aria-labelledby="hardware-title"><div class="section-label"><p class="eyebrow">03 / Final prototype</p>
+<h2 id="hardware-title">The final hardware</h2></div><div class="section-content"><figure class="case-figure"><img src="../../assets/meit/circuit.jpg" width="1600" height="1200" alt="Close view of the belt electronics, ESP32-S3 and two DRV8833 modules" loading="lazy" decoding="async"><figcaption>Final motor-output circuit. </figcaption></figure>
+<div class="table-wrap"><table><caption>Active hardware and connections</caption><thead><tr><th>Element</th><th>Implementation</th></tr></thead><tbody><tr><td>Controller</td><td>LOLIN S3 / ESP32-S3</td></tr><tr><td>Motor outputs</td><td>GPIO21 → LEFT · GPIO13 → RIGHT</td></tr><tr><td>Drivers / Actuators</td><td>Two DRV8833 modules · Two 3 V ERM motors</td></tr><tr><td>Driver inputs</td><td>AIN1 = PWM · AIN2 = GND · nSLEEP = 3.3 V</td></tr><tr><td>Power</td><td>USB-C for MCU · Four-AA pack for motors · Common ground</td></tr></tbody></table></div></div></section>
+
+<section class="case-section" id="contribution" aria-labelledby="contribution-title"><div class="section-label"><p class="eyebrow">04 / My contribution</p>
+<h2 id="contribution-title">My contribution</h2></div><div class="section-content"><p>I worked across the embedded audio experiments, actuator firmware, hardware bring-up and iOS frontend.</p>
+<article class="contribution"><h3>A usable iOS audio frontend</h3><dl><dt>Problem</dt><dd>The external microphone prototype did not provide reliable capture.</dd><dt>Implementation</dt><dd>Implemented stereo capture, stream-format checks, equal-weight downmix, a persistent AVAudioConverter and a 40,000-sample PCM16 ring buffer.</dd><dt>Why</dt><dd>Direction processing needs separate channels; the classifier needs a fixed mono format.</dd><dt>Result</dt><dd>A bounded pipeline produces the exact 80,000-byte payload required by the AI bridge.</dd></dl>
+</article>
+<article class="contribution"><h3>Stable direction cues and integration</h3><dl><dt>Problem</dt><dd>Small channel-level changes could repeatedly flip the displayed direction.</dd><dt>Implementation</dt><dd>Added linear-RMS EMA, separate entry/release thresholds, silence reset, wearable inference requests and completed-event status.</dd><dt>Why</dt><dd>Hysteresis retains a cue until evidence falls below its release threshold; event metadata keeps results associated with their audio.</dd><dt>Result</dt><dd>The final frontend exposes LEFT / CENTER / RIGHT / unavailable with a reusable HTTP contract.</dd></dl>
+</article>
+<article class="contribution"><h3>Motor sequencing and hardware bring-up</h3><dl><dt>Problem</dt><dd>BLE callbacks and timer callbacks must not compete over a running vibration pattern.</dd><dt>Implementation</dt><dd>Implemented the DRV8833 PWM sequencer with one FreeRTOS task owning pattern state, deadline checks and all-off recovery; corrected motor pins after hardware checks.</dd><dt>Why</dt><dd>Single ownership makes replacement and timeout handling explicit, including delayed or duplicate timer wakeups.</dd><dt>Result</dt><dd>The motor sequencer became part of the two-motor firmware.</dd></dl>
+</article>
+<article class="contribution"><h3>Embedded acquisition and debugging</h3><dl><dt>Problem</dt><dd>The original TDoA design depended on aligned capture and complete audio clips.</dd><dt>Implementation</dt><dd>Implemented and revised the embedded signal pipeline, repaired dual-I2S clock routing, and added an exact-length gate before forwarding reassembled BLE audio.</dd><dt>Why</dt><dd>A DMA transfer is not proof of valid acoustic data; a partially reassembled clip must not reach inference.</dd><dt>Result</dt><dd>Created reproducible bring-up and regression checks. The microphone frontend was ultimately replaced.</dd></dl>
+</article>
+<article class="contribution"><h3>Circuit Design &amp; Fabrication</h3><p>Designed the circuit configuration, connected the components, wired and assembled the hardware, and carried out hardware bring-up for the wearable prototype.</p>
+</article>
+</div></section>
+
+<section class="case-section" id="team" aria-labelledby="team-title"><div class="section-label"><p class="eyebrow">05 / Collaboration</p>
+<h2 id="team-title">Team implementation</h2></div><div class="section-content"><p><strong>AI model and decision logic.</strong> The AI team implemented YAMNet embeddings, a trained Dense classification head, temperature calibration and hazard detection for horn, siren, crash and normal sounds.</p>
+<p><strong>Communication and integration.</strong> Collaborators implemented the BLE command layer, final haptic mapping and motor bridge.</p>
+<p><strong>Mechanical integration.</strong> Team members designed and fabricated the belt’s holders and mounting structure.</p>
+</div></section>
+
+<section class="case-section" id="ios" aria-labelledby="ios-title"><div class="section-label"><p class="eyebrow">06 / Audio and software</p>
+<h2 id="ios-title">Wearable Mode for iOS</h2></div><div class="section-content"><div class="ios-layout"><div class="app-carousel media-carousel" role="region" aria-roledescription="carousel" aria-label="iOS app interface">
+<div class="carousel-track" tabindex="0" aria-label="App images; use the arrow buttons or swipe">
+<div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 2"><figure class="case-figure"><img src="../../assets/meit/ios-app.png" width="1179" height="2556" alt="Wearable Mode showing audio input, direction cue and classification" loading="lazy" decoding="async"></figure></div>
+<div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 2"><figure class="case-figure"><img src="../../assets/meit/app-demo.gif" width="400" height="866" alt="Animated recording of the iOS app interface" loading="lazy" decoding="async"></figure></div>
+</div>
+<div class="carousel-controls"><button class="carousel-prev" type="button" aria-label="Previous app image"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button><span class="carousel-position" aria-live="polite">1 / 2</span><button class="carousel-next" type="button" aria-label="Next app image"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button></div></div>
+<div class="ios-description"><p>Wearable Mode captures stereo audio, calculates a direction cue, prepares AI input, sends it over HTTP, and displays the result and connection state.</p>
+<ol class="pipeline"><li>AVCaptureDeviceInput → stereo audio</li><li>AVCaptureAudioDataOutput → CMSampleBuffer</li><li>Channel RMS + direction cue</li><li>Mono downmix → AVAudioConverter</li><li>16 kHz PCM16LE → 2.5-second rolling buffer</li><li>HTTP request → AI result and state UI</li></ol>
+<p>The converter retains state across buffers. Reusable slots bound queued processing, and the snapshot contains the latest 40,000 samples.</p>
+</div></div></div></section>
+
+<section class="case-section" id="direction" aria-labelledby="direction-title"><div class="section-label"><p class="eyebrow">07 / Signal processing</p>
+<h2 id="direction-title">Stereo direction cues</h2></div><div class="section-content"><p>The final cue uses stereo level differences. RMS is calculated per stereo channel, smoothed in the linear-amplitude domain, then compared in decibels.</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block" aria-label="RMS c equals square root of the mean squared samples"><msub><mi>RMS</mi><mi>c</mi></msub><mo>=</mo><msqrt><mrow><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msubsup><mi>x</mi><mrow><mi>c</mi><mo>,</mo><mi>i</mi></mrow><mn>2</mn></msubsup></mrow></msqrt></math><p>N samples per measurement; each channel is evaluated independently.</p>
+</div><div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block" aria-label="Smoothed RMS equals previous value plus alpha times the difference"><msub><mi>E</mi><mi>t</mi></msub><mo>=</mo><msub><mi>E</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><mi>α</mi><mo>(</mo><msub><mi>RMS</mi><mi>t</mi></msub><mo>−</mo><msub><mi>E</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>)</mo></math><p>α = 0.25. Smoothing is applied to linear RMS, not to dB values.</p>
+</div><div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block" aria-label="Delta dB equals 20 log base 10 of the ratio of floored smoothed channel levels"><mi>Δ</mi><mi>dB</mi><mo>=</mo><mn>20</mn><msub><mi>log</mi><mn>10</mn></msub><mfrac><mrow><mi>max</mi><mo>(</mo><msub><mi>E</mi><mn>1</mn></msub><mo>,</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>5</mn></mrow></msup><mo>)</mo></mrow><mrow><mi>max</mi><mo>(</mo><msub><mi>E</mi><mn>2</mn></msub><mo>,</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>5</mn></mrow></msup><mo>)</mo></mrow></mfrac></math><p>Enter LEFT/RIGHT at ±0.7 dB; retain it until the magnitude drops below 0.5 dB. Raw silence at or below −65 dBFS clears the history.</p>
+</div><figure class="code-example"><figcaption>StereoDirectionEstimator.swift · hysteresis</figcaption><pre tabindex="0" aria-label="StereoDirectionEstimator.swift · hysteresis source excerpt"><code>        case .left:
+            return difference &gt;= configuration.releaseThresholdDB ? .left : .center
+        case .right:
+            return difference &lt;= -configuration.releaseThresholdDB ? .right : .center
+        case .center, .unavailable:
+            if difference &gt;= configuration.enterThresholdDB { return .left }
+            if difference &lt;= -configuration.enterThresholdDB { return .right }
+            return .center
+        }
+    }</code></pre></figure>
+</div></section>
+
+<section class="case-section" id="haptics" aria-labelledby="haptics-title"><div class="section-label"><p class="eyebrow">08 / Actuation</p>
+<h2 id="haptics-title">Motor sequencing and bring-up</h2></div><div class="section-content"><p>I implemented the DRV8833 PWM motor sequencer and hardware bring-up. A dedicated FreeRTOS task owns the pattern state and timer operations; deadline checks control when the sequence advances, and failed timer starts return the outputs to all-off.</p>
+<p>I also corrected the motor GPIO mapping after hardware checks and added host tests for output selection and timer races.</p>
+<figure class="code-example"><figcaption>motor.c · deadline-controlled advancement</figcaption><pre tabindex="0" aria-label="motor.c · deadline-controlled advancement source excerpt"><code>        // Old, duplicate and inactive TICKs carry no authority to advance.
+        // A late wake-up may service a now-due step, but never an early one.
+        if (timer_armed &amp;&amp; esp_timer_get_time() &gt;= step_deadline_us) {
+            (void)esp_timer_stop(pattern_timer);
+            timer_armed = false;
+            advance_step();
+        }</code></pre></figure>
+</div></section>
+
+<section class="case-section" id="deep-dive" aria-labelledby="deep-dive-title"><div class="section-label"><p class="eyebrow">09 / Engineering deep dive</p>
+<h2 id="deep-dive-title">The original TDoA investigation</h2></div><div class="section-content"><p class="archive-label">Earlier research · Not in the final runtime</p>
+<p>The first architecture explored four INMP441 microphones and eight directional sectors. The firmware used two stereo I2S receivers at 48 kHz: I2S0 master for FRONT/RIGHT and I2S1 slave for BACK/LEFT. L/R selection assigns microphones to opposite slots on a shared data line. BCLK clocks the bits; WS identifies the slot.</p>
+<p>The shared clock pads were GPIO5/6, with data on GPIO7 and GPIO15. One stereo bus handles only two slots, so two buses were needed for four microphones. I repaired the GPIO Matrix routing so the slave received the master’s clock while the external pads remained outputs.</p>
+<figure class="code-example"><figcaption>audio_capture.c · original shared-clock repair</figcaption><pre tabindex="0" aria-label="audio_capture.c · original shared-clock repair source excerpt"><code>    ESP_ERROR_CHECK(gpio_set_direction(I2S_A_BCLK, GPIO_MODE_INPUT_OUTPUT));
+    ESP_ERROR_CHECK(gpio_set_direction(I2S_A_WS, GPIO_MODE_INPUT_OUTPUT));
+
+    esp_rom_gpio_connect_out_signal(I2S_A_BCLK, I2S0I_BCK_OUT_IDX, false, false);
+    esp_rom_gpio_connect_out_signal(I2S_A_WS, I2S0I_WS_OUT_IDX, false, false);
+
+    esp_rom_gpio_connect_in_signal(I2S_A_BCLK, I2S1I_BCK_IN_IDX, false);
+    esp_rom_gpio_connect_in_signal(I2S_A_WS, I2S1I_WS_IN_IDX, false);</code></pre></figure>
+<h3>Time difference → direction</h3><p>The legacy estimator uses GCC-PHAT: a cross-spectrum is normalized before inverse FFT, followed by a physically bounded lag search and parabolic peak interpolation. LEFT↔RIGHT and BACK↔FRONT delays supply the two axes; bus skew is subtracted in the delay domain.</p>
+<div class="geometry"><svg viewBox="0 0 360 240" role="img" aria-labelledby="geometry-title geometry-desc"><title id="geometry-title">Original four-microphone model</title><desc id="geometry-desc">Front, right, back and left microphones on a circle of radius 0.08 metres, with opposite microphone pairs.</desc><circle cx="180" cy="120" r="76" fill="none" stroke="#d9d9d9" stroke-dasharray="4 5"/><path d="M104 120H256M180 44V196" fill="none" stroke="#888"/><g fill="#161616"><circle cx="180" cy="44" r="5"/><circle cx="256" cy="120" r="5"/><circle cx="180" cy="196" r="5"/><circle cx="104" cy="120" r="5"/></g><g font-family="Arial, sans-serif" font-size="13" fill="#555" text-anchor="middle"><text x="180" y="23">FRONT</text><text x="301" y="124">RIGHT</text><text x="180" y="225">BACK</text><text x="61" y="124">LEFT</text><text x="205" y="106">r = 0.08 m</text></g></svg><p class="source-note">Original four-microphone geometry · radius 0.08 m.</p>
+</div><div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block" aria-label="Time difference equals arrival time i minus arrival time j equals lag divided by sample rate"><msub><mi>τ</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><msub><mi>t</mi><mi>i</mi></msub><mo>−</mo><msub><mi>t</mi><mi>j</mi></msub><mo>=</mo><mfrac><mi>lag</mi><msub><mi>F</mi><mi>s</mi></msub></mfrac></math><p>Fractional lag refines the sampled correlation peak.</p>
+</div><div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block" aria-label="Sample period equals one over sample rate; path difference equals speed of sound times sample period"><msub><mi>T</mi><mi>s</mi></msub><mo>=</mo><mfrac><mn>1</mn><msub><mi>F</mi><mi>s</mi></msub></mfrac><mo>,</mo><mspace width="0.5em"/><mi>Δd</mi><mo>=</mo><mi>c</mi><msub><mi>T</mi><mi>s</mi></msub></math><p>At 48 kHz: 20.833 μs per sample. With the code’s c = 343 m/s, one sample corresponds to 7.146 mm of path difference; at 16 kHz it is 21.438 mm. </p>
+</div><p>The two corrected pair delays are normalized by the opposite-microphone spacing divided by sound speed. <code>atan2(vx, vy)</code> yields an angle, then 45° sectors provide eight direction labels. A clock offset can masquerade as a propagation delay, which makes synchronization part of the estimator itself.</p>
+<h3>Two consumers, two sample-rate needs</h3><p>The original direction path kept 48 kHz timing resolution, while AI expected 16 kHz audio. Embedded code used a 33-tap windowed-sinc low-pass filter before decimation by three, retaining phase across 1,024-sample frames. The final iOS path instead uses AVAudioConverter at the actual native rate.</p>
+</div></section>
+
+<section class="case-section" id="iterations" aria-labelledby="iterations-title"><div class="section-label"><p class="eyebrow">10 / Development iterations</p>
+<h2 id="iterations-title">What changed, and why</h2></div><div class="section-content"><div class="iteration-layout"><figure class="case-figure"><img src="../../assets/meit/initial-prototype.jpg" width="1200" height="1600" alt="Earlier experimental four-microphone and eight-motor wiring on a workbench" loading="lazy" decoding="async"><figcaption>Initial prototype / debugging only. The dense microphone and motor wiring shown here is not the final device.</figcaption></figure>
+<div><ol class="iterations"><li><strong>Four microphones / eight sectors</strong><p>Dual-I2S, GCC-PHAT and embedded audio transport explored spatial localization.</p>
+</li><li><strong>Two-microphone revision</strong><p>Reduced the acquisition and output complexity, but reliable external capture remained unresolved.</p>
+</li><li><strong>iPhone audio / two-motor backend</strong><p>Moved capture, resampling and direction cue generation into iOS; kept the belt focused on command execution.</p>
+</li></ol>
+</div></div></div></section>
+
+<section class="case-section" id="recognition" aria-labelledby="recognition-title"><div class="section-label"><p class="eyebrow">11 / Recognition</p>
+<h2 id="recognition-title">Recognition</h2></div><div class="section-content"><p class="recognition-prize">Silver Award · $900 Prize</p>
+<p>2026 5th MEIT Interdisciplinary Project Competition</p>
+<p>Oct 1, 2026 · Sookmyung Women's University · Team Project</p>
+<figure class="case-figure"><img src="../../assets/meit/silver-award.jpg" width="1200" height="1600" alt="Team members with the Silver Award placard" loading="lazy" decoding="async"></figure>
+<p>The competition brings together students from Mechanical Engineering, Artificial Intelligence Engineering, and Electronic Engineering. The 2026 theme was solving social problems through AI-enabled hardware and software integration.</p>
+</div></section>
+
+<section class="case-section" id="sources" aria-labelledby="sources-title"><div class="section-label"><p class="eyebrow">12 / Source</p>
+<h2 id="sources-title">Source</h2></div><div class="section-content"><ul class="source-list"><li><div class="lab-heading">View iOS source<a class="lab-link" href="https://github.com/MEIT-competition/meit-ios" target="_blank" rel="noopener noreferrer" aria-label="Visit View iOS source (opens in a new tab)"><svg class="link-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                      <path d="M6 18 18 6M6 6h12v12" />
+                    </svg></a></div></li><li><div class="lab-heading">View Embedded / Electronics source<a class="lab-link" href="https://github.com/MEIT-competition/meit-ee" target="_blank" rel="noopener noreferrer" aria-label="Visit View Embedded / Electronics source (opens in a new tab)"><svg class="link-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                      <path d="M6 18 18 6M6 6h12v12" />
+                    </svg></a></div></li></ul>
+</div></section>
+<div class="case-end"><a class="back-link" href="../../#about">← Back</a><a class="back-link" href="#case-title">Back to top ↑</a></div></main><footer><p>© <span id="year">2026</span> Jihye Park</p>
+</footer></body></html>
