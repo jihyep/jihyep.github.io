@@ -144,3 +144,7 @@ footer { padding: 22px var(--edge) 28px; text-align: right; font-size: 12px; col
   .project-entry > .project-preview-box { grid-column: 1 / -1; }
   .project-entry > .entry-date { margin-bottom: 10px; }
 }
+
+.project-entry > .project-heading { display: block; }
+.project-title-first { display: block; }
+.project-title-last { display: flex; align-items: center; gap: 4px; }

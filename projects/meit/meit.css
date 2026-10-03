@@ -139,3 +139,7 @@ pre code { font-size: inherit; }
   #hardware .case-figure { width: min(100%, 300px); margin-inline: auto; }
   #recognition .case-figure { width: min(100%, 210px); margin-inline: auto; }
 }
+
+@media (max-width: 360px) {
+  .case-study .case-subtitle { font-size: 18px; }
+}
