@@ -38,9 +38,9 @@ for path, page in pages.items():
         if url.fragment and target in pages:
             assert url.fragment in pages[target].ids, f"Missing anchor: {ref}"
 
-detail = (ROOT / "awards/meit/index.html").read_text(encoding="utf-8")
+detail = (ROOT / "projects/meit/index.html").read_text(encoding="utf-8")
 home = (ROOT / "index.html").read_text(encoding="utf-8")
-assert home.count('href="awards/meit/"') == 1
+assert home.count('href="projects/meit/"') == 2
 assert detail.count('<math ') == 5
 assert detail.count('<figure class="code-example">') == 3
 for content in (home, detail):
@@ -50,7 +50,7 @@ assert 'rel="canonical"' in detail and 'property="og:image"' in detail
 assert 'name="robots" content="noindex,nofollow"' in detail
 print(f"PASS: {len(pages)} HTML pages; local resources, anchors, image attributes, math/code counts, award copy and metadata.")
 
-assert not (ROOT / "projects/meit").exists()
+assert not (ROOT / "awards/meit").exists()
 for deleted in ("communication", "challenges", "results", "retrospective"):
     assert f'id="{deleted}"' not in detail
 assert detail.count('class="case-section"') == 12
@@ -61,4 +61,4 @@ assert 'class="demo-toggle"' not in detail
 assert "https://github.com/MEIT-competition/meit-ee" in detail
 assert "https://github.com/MEIT-competition/meit-ai" not in detail
 assert not re.search(r"\b[0-9a-f]{7,40}\b", re.sub(r"<[^>]*>", "", detail))
-print("PASS: Awards route, 12 sections, deletions, public source links and no visible commit hashes.")
+print("PASS: Projects route, 12 sections, deletions, public source links and no visible commit hashes.")

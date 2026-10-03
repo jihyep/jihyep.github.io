@@ -133,14 +133,14 @@ footer { padding: 22px var(--edge) 28px; text-align: right; font-size: 12px; col
 .lab-link.award-more-link { width: auto; gap: 5px; margin-left: 2px; padding: 4px 0; }
 .more-label { font-size: 10px; line-height: 1; letter-spacing: .02em; color: inherit; }
 
-.award-preview-box { grid-column: 2; display: flex; justify-content: center; align-items: center; width: 100%; margin: 14px 0 12px; border: 1px solid #ddd; border-radius: 3px; padding: 17px; }
-.award-preview { display: block; width: min(100%, 220px); height: auto; border-radius: 3px; }
+.project-preview-box { grid-column: 2; display: flex; justify-content: center; align-items: center; width: 100%; margin: 14px 0 12px; border: 1px solid #ddd; border-radius: 3px; padding: 17px; }
+.project-preview { display: block; width: min(100%, 220px); height: auto; border-radius: 3px; }
 
-.award-entry { row-gap: 0; }
-.award-entry > .lab-heading, .award-entry > .award-summary { grid-column: 2; }
-.award-entry > .lab-heading { margin-bottom: 0; }
+.project-entry { row-gap: 0; }
+.project-entry > .lab-heading, .project-entry > .project-summary { grid-column: 2; }
+.project-entry > .lab-heading { margin-bottom: 0; }
 @media (max-width: 900px) {
-  .award-entry > .lab-heading, .award-entry > .award-summary { grid-column: 1; }
-  .award-entry > .award-preview-box { grid-column: 1 / -1; }
-  .award-entry > .entry-date { margin-bottom: 10px; }
+  .project-entry > .lab-heading, .project-entry > .project-summary { grid-column: 1; }
+  .project-entry > .project-preview-box { grid-column: 1 / -1; }
+  .project-entry > .entry-date { margin-bottom: 10px; }
 }
