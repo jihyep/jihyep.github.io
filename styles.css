@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
 /* 전체 글꼴과 크기: 제목 > 항목명 > 설명 > 날짜 순서를 유지하세요. */
 :root {
   font-family: Arial, sans-serif;
@@ -150,59 +150,29 @@ footer { padding: 22px var(--edge) 28px; text-align: right; font-size: 12px; col
 .project-title-first { display: block; }
 .project-title-last { display: flex; align-items: center; gap: 4px; }
 
-/* 로제 레퍼런스의 검정, 흰색, 체리 레드 팔레트 */
-:root { font-family: 'Nunito', Arial, sans-serif; background: #fffaf9; color: #21191a; }
+/* Pretendard로 통일하고, 원래의 밝은 배경과 기존 페이지 구성을 유지합니다. */
+:root { font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, sans-serif; background: #fff; color: #171717; }
 body { font-family: inherit; }
-body:has(#home:not([hidden])) { background: #100d0e; color: #fffaf9; }
-body:has(#home:not([hidden])) footer { color: #aaa0a0; }
-.home { display: flex; justify-content: center; align-items: center; max-width: none; min-height: 75svh; text-align: center; padding: 56px var(--edge); }
-.home-identity { width: 100%; max-width: 660px; }
-.home h1 { font-size: clamp(48px, 8vw, 96px); font-weight: 900; line-height: .95; letter-spacing: -.055em; }
-.home-email { color: #e5dadd; font-size: 14px; margin-top: 28px; }
-.home-nav { justify-content: center; gap: 10px; margin-top: 32px; }
-.home-nav a { color: #fff; background: #9c192d; min-width: 120px; min-height: 48px; padding: 10px 18px; justify-content: center; transition: background .2s; }
-.home-nav a:hover, .home-nav a:focus-visible { background: #bf2a42; }
+.inner > h1 { font-weight: 700; }
+.page-body h2 { font-weight: 650; }
+.timeline-entry h3 { font-weight: 600; }
+.timeline-entry p, .entry-date { font-weight: 400; }
+/* 참고 이미지처럼 이름을 중앙보다 조금 아래에 두 줄로 배치합니다. */
+.home { display: flex; justify-content: center; align-items: center; max-width: none; min-height: 78svh; text-align: center; padding: clamp(90px, 14vh, 165px) var(--edge) 38px; }
+.home-identity { width: 100%; max-width: 560px; }
+.home h1 { display: inline-flex; flex-direction: column; align-items: flex-start; text-align: left; font-size: clamp(58px, 7.5vw, 94px); font-weight: 850; line-height: .91; letter-spacing: -.065em; }
+.home h1 span:last-child { margin-left: .10em; }
+.home-email { display: block; width: fit-content; margin: 30px auto 0; color: #666; font-size: 14px; font-weight: 400; }
+.home-nav { justify-content: center; gap: 8px; margin-top: 28px; }
+.home-nav a { color: #fff; background: #9c192d; min-width: 112px; min-height: 46px; padding: 10px 16px; justify-content: center; font-weight: 600; text-transform: lowercase; transition: background .2s; }
+.home-nav a:hover, .home-nav a:focus-visible { background: #bd2b43; }
 .home-nav a:after { display: none; }
-a:focus-visible, button:focus-visible { outline-color: #b72c42; }
-::selection { background: #f1c8d0; }
-.header .home-mark { border-radius: 0; }
-.dropdown { background: #fffaf9; }
-.menu-toggle:hover, .is-open .menu-toggle, .dropdown-nav a:hover, .dropdown-nav a[aria-current=page] { background: #f5e7e9; }
-.inner > h1, .page-body h2 { color: #941c30; }
-.lab-link:hover, .external-link:hover { color: #a51f35; }
-.record, .record-group, .external-link, .project-preview-box { border-color: #e6d5d8; }
+.dropdown-nav a { text-transform: lowercase; }
+a:focus-visible, button:focus-visible { outline-color: #9c192d; }
+.lab-link:hover, .external-link:hover { color: #9c192d; }
 @media (max-width: 650px) {
- .home { min-height: 70svh; padding: 40px var(--edge); }
- .home h1 { font-size: clamp(44px, 12vw, 64px); }
+ .home { min-height: 72svh; padding: 90px var(--edge) 32px; }
+ .home h1 { font-size: clamp(54px, 16vw, 74px); }
  .home-nav { gap: 8px; }
- .home-nav a { min-width: 0; flex: 1 1 88px; padding-inline: 10px; }
-}
-
-/* 전 페이지의 검정 배경과 흰색 텍스트 */
-:root, body { font-family: 'Fredoka', Arial, sans-serif; background: #100d0e; color: #fffaf9; }
-.home { min-height: 78svh; align-items: center; }
-.home-identity { max-width: 600px; }
-.home h1 { display: inline-flex; flex-direction: column; align-items: flex-start; text-align: left; transform: rotate(-7deg); font-size: clamp(74px, 11vw, 144px); font-weight: 700; line-height: .77; letter-spacing: -.055em; }
-.home h1 span:last-child { margin-left: .16em; }
-.home-email { display: block; width: fit-content; margin: 48px auto 0; color: #f2e7e9; }
-.home-nav { margin-top: 28px; }
-.home-nav a, .dropdown-nav a { text-transform: lowercase; }
-.header .menu-toggle:hover, .header.is-open .menu-toggle, .is-open .menu-toggle { background: #302024; }
-.dropdown { background: #211a1c; box-shadow: 0 8px 28px #0009, 0 0 0 1px #473136; }
-.dropdown-nav a:hover, .dropdown-nav a[aria-current=page] { background: #40262c; }
-.inner > h1, .page-body h2, .page-body h3 { color: #fffaf9; }
-.timeline-entry p, .interest-value { color: #dfd4d6; }
-.page-body .interest-detail, .timeline-entry .entry-date, .timeline-entry .award-detail, .record .empty-value { color: #b8aaae; }
-.timeline-entry .entry-role { color: #f0e7e8; }
-.interest-detail span { color: #968689; }
-.lab-link { color: #d4b6bc; }
-.lab-link:hover, .lab-link:focus-visible, .external-link:hover { color: #f48fa1; }
-.record, .record-group, .external-link, .project-preview-box { border-color: #4b353a; }
-.award-badge { color: #f0e7e8; border-color: #71545a; }
-footer { color: #b6a9ac; }
-.skip-link { background: #fffaf9; color: #100d0e; }
-@media (max-width: 650px) {
- .home { min-height: 72svh; }
- .home h1 { font-size: clamp(70px, 19vw, 105px); }
- .home-email { margin-top: 42px; }
+ .home-nav a { min-width: 0; flex: 1 1 82px; padding-inline: 8px; }
 }

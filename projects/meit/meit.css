@@ -144,16 +144,8 @@ pre code { font-size: inherit; }
   .case-study .case-subtitle { font-size: 18px; }
 }
 
-/* 상세 프로젝트도 포트폴리오의 체리 레드 포인트를 따릅니다. */
-.case-study h1, .case-study h2, .back-link { color: #941c30; }
-.case-study .eyebrow { color: #9c3446; }
-.case-study .callout { border-left-color: #a51f35; }
-
-/* 프로젝트 상세 페이지도 동일한 어두운 팔레트로 표시합니다. */
-.case-study h1, .case-study h2, .case-study h3, .case-study strong, .case-study .case-subtitle, .case-study .recognition-prize, th { color: #fffaf9; }
-.case-study p, .case-metadata dd, td, .contribution dt, .contribution dd, .pipeline li { color: #e1d6d8; }
-.case-study .eyebrow, .back-link, .case-study .source-note, .case-figure figcaption, .code-example figcaption, .case-metadata dt, .case-toc a, .hero-award, caption, .flow li > span, .case-study .archive-label, .case-study .equation p, .carousel-controls { color: #c3b2b6; }
-.case-section, .case-toc, .case-metadata, .flow li, th, td, .contribution, .pipeline li, .case-study .archive-label, .source-list li, .case-end, .equation { border-color: #4b353a; }
-.code-example pre { background: #211a1c; border-color: #4b353a; color: #fffaf9; }
-.carousel-controls button { color: #e6d6da; border-color: #71545a; }
-.carousel-controls button:hover { color: #fff; border-color: #c76579; }
+/* 기존 상세 배치 위에 Pretendard 굵기와 체리 포인트를 적용합니다. */
+.case-study h1, .case-study h2 { font-weight: 700; }
+.case-study h3, .case-study strong { font-weight: 600; }
+.case-study .eyebrow, .back-link { color: #941c30; }
+.case-study .callout { border-left-color: #9c192d; }
