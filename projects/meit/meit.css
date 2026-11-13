@@ -143,3 +143,8 @@ pre code { font-size: inherit; }
 @media (max-width: 360px) {
   .case-study .case-subtitle { font-size: 18px; }
 }
+
+/* 상세 프로젝트도 포트폴리오의 체리 레드 포인트를 따릅니다. */
+.case-study h1, .case-study h2, .back-link { color: #941c30; }
+.case-study .eyebrow { color: #9c3446; }
+.case-study .callout { border-left-color: #a51f35; }
