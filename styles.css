@@ -177,19 +177,6 @@ a:focus-visible, button:focus-visible { outline-color: #9c192d; }
  .home-nav a { min-width: 0; flex: 1 1 82px; padding-inline: 8px; }
 }
 
-/* 다크 테마: 구분선은 흰색 계열로, 강조 버튼은 체리색으로 유지합니다. */
-:root, body { background: #101010; color: #fafafa; }
-body:has(#home:not([hidden])) { background: #101010; color: #fafafa; }
-.inner > h1, .page-body h2, .page-body h3 { color: #fafafa; }
-.home-email, .timeline-entry p, .interest-value { color: #dedede; }
-.page-body .interest-detail, .timeline-entry .entry-date, .timeline-entry .award-detail, .record .empty-value, footer { color: #bdbdbd; }
-.timeline-entry .entry-role { color: #f1f1f1; }
-.interest-detail span { color: #aaa; }
-.lab-link, .lab-link .more-label { color: #c6c6c6; }
-.lab-link:hover, .lab-link:focus-visible, .external-link:hover { color: #fff; }
-.record, .record-group, .external-link, .project-preview-box { border-color: rgba(255,255,255,.27); }
-.award-badge { color: #f5f5f5; border-color: rgba(255,255,255,.38); }
-.menu-toggle:hover, .is-open .menu-toggle { background: #292929; }
-.dropdown { background: #222; box-shadow: 0 8px 28px #0009, 0 0 0 1px #555; }
-.dropdown-nav a:hover, .dropdown-nav a[aria-current=page] { background: #383838; }
-.skip-link { background: #fff; color: #101010; }
+/* 눈부심을 줄인 연한 크림색 배경 */
+:root, body { background: #faf8f4; color: #171717; }
+.dropdown { background: #faf8f4; }
