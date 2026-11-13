@@ -149,3 +149,13 @@ pre code { font-size: inherit; }
 .case-study h3, .case-study strong { font-weight: 600; }
 .case-study .eyebrow, .back-link { color: #941c30; }
 .case-study .callout { border-left-color: #9c192d; }
+
+/* 프로젝트 페이지의 텍스트와 흰색 계열 구분선 */
+.case-study h1, .case-study h2, .case-study h3, .case-study strong, .case-study .case-subtitle, .case-study .recognition-prize, th { color: #fafafa; }
+.case-study p, .case-metadata dd, td, .contribution dt, .contribution dd, .pipeline li { color: #dedede; }
+.case-study .eyebrow, .back-link, .case-study .source-note, .case-figure figcaption, .code-example figcaption, .case-metadata dt, .case-toc a, .hero-award, caption, .flow li > span, .case-study .archive-label, .case-study .equation p, .carousel-controls { color: #bdbdbd; }
+.case-section, .case-toc, .case-metadata, .flow li, th, td, .contribution, .pipeline li, .case-study .archive-label, .source-list li, .case-end, .equation { border-color: rgba(255,255,255,.27); }
+.case-study .callout { border-left-color: rgba(255,255,255,.55); }
+.code-example pre { background: #202020; border-color: rgba(255,255,255,.27); color: #fafafa; }
+.carousel-controls button { color: #eee; border-color: rgba(255,255,255,.45); }
+.carousel-controls button:hover { color: #fff; border-color: #fff; }
