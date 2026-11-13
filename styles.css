@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
 /* 전체 글꼴과 크기: 제목 > 항목명 > 설명 > 날짜 순서를 유지하세요. */
 :root {
   font-family: Arial, sans-serif;
@@ -176,4 +176,33 @@ a:focus-visible, button:focus-visible { outline-color: #b72c42; }
  .home h1 { font-size: clamp(44px, 12vw, 64px); }
  .home-nav { gap: 8px; }
  .home-nav a { min-width: 0; flex: 1 1 88px; padding-inline: 10px; }
+}
+
+/* 전 페이지의 검정 배경과 흰색 텍스트 */
+:root, body { font-family: 'Fredoka', Arial, sans-serif; background: #100d0e; color: #fffaf9; }
+.home { min-height: 78svh; align-items: center; }
+.home-identity { max-width: 600px; }
+.home h1 { display: inline-flex; flex-direction: column; align-items: flex-start; text-align: left; transform: rotate(-7deg); font-size: clamp(74px, 11vw, 144px); font-weight: 700; line-height: .77; letter-spacing: -.055em; }
+.home h1 span:last-child { margin-left: .16em; }
+.home-email { display: block; width: fit-content; margin: 48px auto 0; color: #f2e7e9; }
+.home-nav { margin-top: 28px; }
+.home-nav a, .dropdown-nav a { text-transform: lowercase; }
+.header .menu-toggle:hover, .header.is-open .menu-toggle, .is-open .menu-toggle { background: #302024; }
+.dropdown { background: #211a1c; box-shadow: 0 8px 28px #0009, 0 0 0 1px #473136; }
+.dropdown-nav a:hover, .dropdown-nav a[aria-current=page] { background: #40262c; }
+.inner > h1, .page-body h2, .page-body h3 { color: #fffaf9; }
+.timeline-entry p, .interest-value { color: #dfd4d6; }
+.page-body .interest-detail, .timeline-entry .entry-date, .timeline-entry .award-detail, .record .empty-value { color: #b8aaae; }
+.timeline-entry .entry-role { color: #f0e7e8; }
+.interest-detail span { color: #968689; }
+.lab-link { color: #d4b6bc; }
+.lab-link:hover, .lab-link:focus-visible, .external-link:hover { color: #f48fa1; }
+.record, .record-group, .external-link, .project-preview-box { border-color: #4b353a; }
+.award-badge { color: #f0e7e8; border-color: #71545a; }
+footer { color: #b6a9ac; }
+.skip-link { background: #fffaf9; color: #100d0e; }
+@media (max-width: 650px) {
+ .home { min-height: 72svh; }
+ .home h1 { font-size: clamp(70px, 19vw, 105px); }
+ .home-email { margin-top: 42px; }
 }
