@@ -149,3 +149,6 @@ pre code { font-size: inherit; }
 .case-study h3, .case-study strong { font-weight: 600; }
 .case-study .eyebrow, .back-link { color: #941c30; }
 .case-study .callout { border-left-color: #9c192d; }
+
+/* 프로젝트 제목은 본문보다 굵게 강조합니다. */
+.case-study .case-subtitle { font-weight: 700; margin: 0; }
